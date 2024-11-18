@@ -1,9 +1,22 @@
-const express=require('express');
-const router=express.Router();
+const express = require("express");
+const router = express.Router();
+const { registerOwner, loginOwner } = require("../controllers/authController");
 
-router.get("/",(req,res)=>{
-    console.log("Reacher to the router")
-    res.send("index");
-})
+router.get("/register", (req, res) => {
+  res.render("../views/owner/register.ejs");
+});
 
-module.exports=router;
+router.get("/login", (req, res) => {
+  res.render("../views/owner/login.ejs");
+});
+
+router.get("/logout", (req, res) => {
+  res.cookie("token", "");
+  res.redirect("/");
+});
+
+router.post("/registerOwner", registerOwner);
+
+router.post("/loginOwner", loginOwner);
+
+module.exports = router;

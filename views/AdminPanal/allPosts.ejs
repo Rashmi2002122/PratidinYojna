@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Admin Panel Container -->
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-gray-800 text-gray-100 flex-shrink-0 ">
+        <div class="p-4 text-center font-bold text-xl border-b border-gray-700">
+          Admin Dashboard
+        </div>
+        <nav class="mt-4">
+          <a
+            href="#"
+            class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100 font-semibold"
+            >Dashboard</a
+          >
+          <a
+            href="/post"
+            class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100"
+            >Upload Work</a
+          >
+          <a
+            href="../post/allPosts"
+            class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100"
+            >Projects</a
+          >
+          <a href="#" class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100"
+            >Reports</a
+          >
+          <a href="#" class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100"
+            >Settings</a
+          >
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="flex-1 bg-gray-100">
+        <!-- Header -->
+        <header class="bg-white shadow p-4 flex justify-between items-center ">
+          <h1 class="text-2xl font-semibold text-gray-700">Upload Work</h1>
+          <div class="flex items-center space-x-4">
+            <span class="text-gray-700 font-medium"
+              >Hi! 👋<%= owner.username %></span
+            >
+            <button
+              class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+            >
+              <a href="/"> Logout</a>
+            </button>
+          </div>
+        </header>
+
+        <!-- Work Upload Form -->
+        <div class="p-8">
+          <% if(owner.Posts && owner.Posts.length>0){ %> <%
+          owner.Posts.forEach(function (post) {%>
+          <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6 mb-2">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 ">
+              <%=post.location %>
+            </h2>
+            <h2>Time : <%=post.price%></h2>
+            <h2>Contact : <%=owner.contact%></h2>
+            <h2>Need : <%=post.PeopleNeed%> person</h2>
+            
+            <h3>Posted By : <%=owner.username%></h3>
+          </div>
+          <% }) %> <% }else{ %>
+          <p>No work is assigned</p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <nav class="bg-gray-600">
+      <div
+        class="container mx-auto px-4 py-2 flex justify-between items-center"
+      >
+        
+        <a href="#" class="text-white text-xl font-bold">Pratidin Yojna</a>
+
+        
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="#" class="text-white hover:text-gray-300">Home</a></li>
+          <li>
+            <a href="#" class="text-white hover:text-gray-300">History</a>
+          </li>
+          <li>
+            <a href="#" class="text-white hover:text-gray-300">Services</a>
+          </li>
+          <li>
+            <a href="#" class="text-white hover:text-gray-300">Profile</a>
+          </li>
+          <li>
+            <a href="./logout" class="text-white hover:text-gray-300">Logout</a>
+          </li>
+        </ul>
+
+        
+        <button id="menu-btn" class="md:hidden text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+      </div>
+
+     
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-700">
+        <ul class="space-y-4 py-4">
+          <li>
+            <a href="#" class="block text-white text-center hover:text-gray-300"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="#" class="block text-white text-center hover:text-gray-300"
+              >History</a
+            >
+          </li>
+          <li>
+            <a href="#" class="block text-white text-center hover:text-gray-300"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a href="#" class="block text-white text-center hover:text-gray-300"
+              >Profile</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mx-auto mt-9 px-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <% if (owner.length > 0) { %> 
+      <% owner.forEach(function(singleOwner) { %>
+      <% if (singleOwner.Posts && singleOwner.Posts.length > 0) { %> 
+      <% singleOwner.Posts.forEach(function(post) { %>
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden"
+      >
+        <img
+        <% if(post.image){
+           %>
+          src="data:image/jpeg;base64,<%= post.image.toString('base64') %>"
+          <% }else{ %>
+            src="https://via.placeholder.com/300x150"
+            <% } %>
+          alt="Card Image"
+          class="w-full h-32 object-cover"
+        />
+
+        <div class="p-4">
+          <h2 class="text-lg font-semibold text-gray-800 mb-2">
+            <%= post.location %>
+          </h2>
+          <p class="text-gray-600 text-sm mb-4">
+            <b>People Need:</b> <%= post.PeopleNeed %> <br />
+            <b>Wages:</b> <%= post.price %> <br />
+            <b>Timing:</b> <%= post.timing %>
+           <p class="py-2"> <b>Posted By: </b> <%= singleOwner.username %></p>
+          </p>
+          <a
+            href="#"
+            class="block bg-blue-600 text-white text-center py-2 rounded hover:bg-blue-700"
+          >
+            Get Contact
+          </a>
+        </div>
+      </div>
+      <% }); %> 
+      <% } %> 
+      <% }); %> 
+      <% } else { %>
+      <p class="text-center text-gray-600 col-span-full">No data available</p>
+      <% } %>
+    </div>
+
+    <script>
+      // Toggle mobile menu
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

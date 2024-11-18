@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Admin Panel Container -->
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-gray-800 text-gray-100 flex-shrink-0">
+        <div class="p-4 text-center font-bold text-xl border-b border-gray-700">
+          Admin Dashboard
+        </div>
+        <nav class="mt-4">
+          <a
+            href="#"
+            class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100 font-semibold"
+            >Dashboard</a
+          >
+          <a href="/post" class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100"
+            >Upload Work</a
+          >
+          <a href="/post/allPosts" class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100"
+            >Projects</a
+          >
+          <a href="#" class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100"
+            >Reports</a
+          >
+          <a href="#" class="block py-2.5 px-4 hover:bg-gray-700 text-gray-100"
+            >Settings</a
+          >
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="flex-1 bg-gray-100">
+        <!-- Header -->
+        <header class="bg-white shadow p-4 flex justify-between items-center">
+          <h1 class="text-2xl font-semibold text-gray-700">Upload Work</h1>
+          <div class="flex items-center space-x-4">
+            <span class="text-gray-700 font-medium"
+              >Hi! 👋<%= owner.username %></span
+            >
+            <button
+              class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+            >
+              <a href="/"> Logout</a>
+            </button>
+          </div>
+        </header>
+
+        <!-- Work Upload Form -->
+        <div class="p-8">
+          <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">
+              Work Upload Form
+            </h2>
+
+            <form action="/post/create" method="post" enctype="multipart/form-data">
+              <!-- Work Name -->
+              <div class="mb-4">
+                <label for="workname" class="block text-gray-700 font-medium"
+                  >Contact</label
+                >
+                <input
+                  type="text"
+                  id="workname"
+                  name="contant"
+                  class="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                  required
+                />
+              </div>
+
+              <!-- Timing -->
+              <div class="mb-4">
+                <label for="timing" class="block text-gray-700 font-medium"
+                  >Timing</label
+                >
+                <input
+                  type="text"
+                  id="timing"
+                  name="timing"
+                  placeholder="e.g., 9 AM - 5 PM"
+                  class="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                  required
+                />
+              </div>
+
+              <!-- Count of People Needed -->
+              <div class="mb-4">
+                <label for="count" class="block text-gray-700 font-medium"
+                  >Count of People Needed</label
+                >
+                <input
+                  type="number"
+                  id="PeopleNeed"
+                  name="PeopleNeed"
+                  min="1"
+                  class="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                  required
+                />
+              </div>
+
+              <!-- Location -->
+              <div class="mb-4">
+                <label for="location" class="block text-gray-700 font-medium"
+                  >Location</label
+                >
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  class="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                  required
+                />
+              </div>
+
+              <!--amount per day-->
+              <div class="mb-4">
+                <label for="price" class="block text-gray-700 font-medium"
+                  >Price</label
+                >
+                <input
+                  type="text"
+                  id="location"
+                  name="price"
+                  class="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                  required
+                />
+              </div>
+
+              <!-- Site Image -->
+              <div class="mb-4">
+                <label for="site-image" class="block text-gray-700 font-medium"
+                  >Site Image</label
+                >
+                <input
+                  type="file"
+                  id="site-image"
+                  name="image"
+                  accept="images/*"
+                  class="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                />
+              </div>
+
+              
+
+              <!-- Submit Button -->
+              <div class="mt-6">
+                <button
+                  type="submit"
+                  class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-700"
+                >
+                  Upload Work
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

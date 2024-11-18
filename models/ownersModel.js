@@ -5,16 +5,20 @@ const ownerModel = mongoose.Schema({
   password: String,
   image: String,
   contact: Number,
- 
-  email: String,
-  Posts:{
-    type:Array,
-    default:[]
+  email: {
+    type: String,
+    unique:true
   },
+  Posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "post",
+    },
+  ],
   happyOnUser: {
     type: Array,
     default: [],
-  }
+  },
 });
 
 module.exports = mongoose.model("owner", ownerModel);
