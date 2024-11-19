@@ -52,8 +52,18 @@ module.exports.loginUser = async (req, res) => {
 };
 
 module.exports.getContact = async (req, res) => {
-  const ownerId = req.params.identity;
-  const owner = await ownersModel.findOne({ ownerId });
+  const ownerId = req.params.id;
 
-  res.render("../views/workConsole/getContact", { owner });
+  console.log("Owner ID:", ownerId);
+  const owner = await ownersModel.findById( ownerId );
+
+  console.log(owner);
+  
+  if (!owner) {
+    return res.status(404).send("Owner not found");
+  }
+
+  console.log(owner.email);
+
+  res.redirect("workConsole/getContact", { owner});
 };
