@@ -55,8 +55,5 @@ module.exports.getContact = async (req, res) => {
   const ownerId = req.params.identity;
   const owner = await ownersModel.findOne({ ownerId });
 
-  if (!owner) {
-    return res.status(404).send("Owner not found.");
-  }
   res.render("../views/workConsole/getContact", { owner });
 };

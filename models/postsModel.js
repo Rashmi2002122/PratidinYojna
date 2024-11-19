@@ -13,7 +13,7 @@ const postModel = mongoose.Schema({
   timing: String,
   createdTime:{
     type:Date,
-    default:new Date.getTime()
+    default: Date.now()
   }
 });
 
