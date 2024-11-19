@@ -3,7 +3,9 @@ const router = express.Router();
 const {
   registerUser,
   loginUser,
+  getContact
 } = require("../controllers/userAuthController");
+const isLoggedIn = require("../middlewares/isLoggedIn");
 
 router.get("/register", (req, res) => {
   res.render("../views/user/register.ejs");
@@ -25,5 +27,7 @@ router.get("/logout", (req, res) => {
   res.cookie("token", "");
   res.redirect("/");
 });
+
+router.get("/getContact/:identity",isLoggedIn, getContact);
 
 module.exports = router;

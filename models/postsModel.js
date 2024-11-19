@@ -10,7 +10,11 @@ const postModel = mongoose.Schema({
   PeopleNeed: Number,
   location:String,
   price: Number,
-  timing: String
+  timing: String,
+  createdTime:{
+    type:Date,
+    default:new Date.getTime()
+  }
 });
 
 module.exports = mongoose.model("post", postModel);

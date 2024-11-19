@@ -77,6 +77,8 @@
       </div>
     </nav>
 
+   
+
     <div class="container mx-auto mt-9 px-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <% if (owner.length > 0) { %> 
       <% owner.forEach(function(singleOwner) { %>
@@ -85,6 +87,7 @@
       <div
         class="bg-white rounded-lg shadow-md overflow-hidden"
       >
+      <% const status = Date.now() - (post.createdTime *1000) <= 24 * 60 * 60 * 1000; %>
         <img
         <% if(post.image){
            %>
@@ -95,6 +98,12 @@
           alt="Card Image"
           class="w-full h-32 object-cover"
         />
+        Status
+        <%if(status){%>
+          🟢
+          <%}else{%>
+            🔴
+            <%}%>
 
         <div class="p-4">
           <h2 class="text-lg font-semibold text-gray-800 mb-2">
@@ -107,7 +116,7 @@
            <p class="py-2"> <b>Posted By: </b> <%= singleOwner.username %></p>
           </p>
           <a
-            href="#"
+            href="/user/getContact/<%=singleOwner._id%>"
             class="block bg-blue-600 text-white text-center py-2 rounded hover:bg-blue-700"
           >
             Get Contact

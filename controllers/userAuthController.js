@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { generateToken } = require("../utils/generateToken");
 const usersModel = require("../models/usersModel");
 const postsModel = require("../models/postsModel");
-const ownersModel=require("../models/ownersModel");
+const ownersModel = require("../models/ownersModel");
 
 module.exports.registerUser = async (req, res) => {
   try {
@@ -45,7 +45,18 @@ module.exports.loginUser = async (req, res) => {
   bcrypt.compare(password, user.password, function (err, result) {
     let token = generateToken(user);
     res.cookie("token", token);
-    console.log(owner)
-    res.render("../views/workConsole/mainScreen", {owner });
+
+    console.log(owner);
+    res.render("../views/workConsole/mainScreen", { owner });
   });
+};
+
+module.exports.getContact = async (req, res) => {
+  const ownerId = req.params.identity;
+  const owner = await ownersModel.findOne({ ownerId });
+
+  if (!owner) {
+    return res.status(404).send("Owner not found.");
+  }
+  res.render("../views/workConsole/getContact", { owner });
 };
