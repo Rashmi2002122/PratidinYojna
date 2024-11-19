@@ -29,7 +29,7 @@ module.exports.posts = async (req, res) => {
       timing,
     });
 
-    console.log(post.image);
+    
     
 
     owner.Posts.push(post._id);
