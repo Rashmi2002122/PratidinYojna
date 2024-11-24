@@ -20,7 +20,6 @@ router.post("/registerOwner", registerOwner);
 router.post("/loginOwner", loginOwner);
 
 router.get("/ownerSetting", (req, res) => {
-  console.log("about the route")
-  res.send("About route is working");
+  res.render("..viewsAdminPanal/ownerSetting")
 });
 module.exports = router;

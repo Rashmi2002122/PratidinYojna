@@ -65,5 +65,5 @@ module.exports.getContact = async (req, res) => {
 
   console.log(owner.email);
 
-  res.redirect("workConsole/getContact", { owner});
+  res.render("workConsole/getContact", {owner});
 };

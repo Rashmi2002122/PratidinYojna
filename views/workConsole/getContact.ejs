@@ -42,7 +42,7 @@
                   d="M2.923 2.923a10.5 10.5 0 1115.55 15.551M12 8v4l3 3"
                 />
               </svg>
-              <span class="text-gray-700">Email: john.doe@example.com</span>
+              <span class="text-gray-700">Email: <%=owner.email%></span>
             </div>
             <div class="flex items-center">
               <svg
@@ -59,7 +59,7 @@
                   d="M3 6l9 9 9-9"
                 />
               </svg>
-              <span class="text-gray-700">Phone: +1 234 567 890</span>
+              <span class="text-gray-700">Phone: <%= owner.contact %></span>
             </div>
             <div class="flex items-center">
               <svg
@@ -77,7 +77,7 @@
                 />
               </svg>
               <span class="text-gray-700"
-                >Address: 123 Main Street, City, Country</span
+                >Address: <%=owner.happyOnUser%></span
               >
             </div>
           </div>

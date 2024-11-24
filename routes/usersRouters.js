@@ -28,6 +28,6 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.post("/getContact/:id", isLoggedIn, getContact);
+router.get("/getContact/:id",isLoggedIn, getContact);
 
 module.exports = router;
