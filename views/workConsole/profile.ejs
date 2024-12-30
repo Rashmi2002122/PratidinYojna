@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <nav class="bg-gray-600">
+      <div
+        class="container mx-auto px-4 py-2 flex justify-between items-center"
+      >
+        <a href="#" class="text-white text-xl font-bold">Pratidin Yojna</a>
+
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="#" class="text-white hover:text-gray-300">Home</a></li>
+          <li>
+            <a href="#" class="text-white hover:text-gray-300">History</a>
+          </li>
+          <li>
+            <a href="#" class="text-white hover:text-gray-300">Services</a>
+          </li>
+          <li>
+            <a href="#" class="text-white hover:text-gray-300">Profile</a>
+          </li>
+          <li>
+            <a href="./logout" class="text-white hover:text-gray-300">Logout</a>
+          </li>
+        </ul>
+
+        <button id="menu-btn" class="md:hidden text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-700">
+        <ul class="space-y-4 py-4">
+          <li>
+            <a href="#" class="block text-white text-center hover:text-gray-300"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="#" class="block text-white text-center hover:text-gray-300"
+              >History</a
+            >
+          </li>
+          <li>
+            <a href="#" class="block text-white text-center hover:text-gray-300"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a href="#" class="block text-white text-center hover:text-gray-300"
+              >Profile</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="text-center mb-6">
+      <h1 class="text-2xl font-semibold text-gray-700">Personal Information</h1>
+    </header>
+
+    <form
+      id="user-settings-form"
+      class="space-y-4"
+      enctype="multipart/form-data"
+      action="/owner/updateOwnerdetails"
+      method="post"
+    >
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700"
+          >Name</label
+        >
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value="<%= owner.username %>"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700"
+          >Email</label
+        >
+        <input
+          type="email"
+          id="email"
+          name="email"
+          readonly
+          value="<%= owner.email %>"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        />
+      </div>
+
+      <div>
+        <label for="contact" class="block text-sm font-medium text-gray-700"
+          >Contact</label
+        >
+        <input
+          type="number"
+          id="contact"
+          name="contact"
+          value="<%= owner.contact %>"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        />
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700"
+          >Old Password</label
+        >
+        <input
+          type="password"
+          id="password"
+          name="oldpassword"
+          placeholder="******"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        />
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700"
+          >New Password</label
+        >
+        <input
+          type="password"
+          id="password"
+          name="newpassword"
+          placeholder="******"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        />
+      </div>
+
+      <div>
+        <label
+          for="profile-picture"
+          class="block text-sm font-medium text-gray-700"
+          >Profile Picture</label
+        >
+        <input
+          type="file"
+          id="profile-picture"
+          name="profilePicture"
+          class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+        />
+      </div>
+
+      <div class="flex items-center justify-between">
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Save Changes
+        </button>
+        <button
+          type="reset"
+          class="px-4 py-2 bg-gray-300 text-gray-700 text-sm font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </body>
+</html>

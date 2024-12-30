@@ -19,9 +19,14 @@ router.post("/registerUser", registerUser);
 
 router.post("/loginUser", loginUser);
 
-router.get("/mainScreen", (req, res) => {
+router.get("/home", (req, res) => {
   res.render("../views/workConsole/mainScreen.ejs");
 });
+
+router.get("/profile",(req,res)=>{
+  res.send("working");
+  // res.render("..views/workConsole/profile.ejs")
+})
 
 router.get("/logout", (req, res) => {
   res.cookie("token", "");
