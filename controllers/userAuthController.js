@@ -45,9 +45,11 @@ module.exports.loginUser = async (req, res) => {
   bcrypt.compare(password, user.password, function (err, result) {
     let token = generateToken(user);
     res.cookie("token", token);
-
+    console.log("user details")
+    console.log(user);
+    console.log("owner details")
     console.log(owner);
-    res.render("../views/workConsole/mainScreen", { owner });
+    res.render("../views/workConsole/mainScreen", { owner, user });
   });
 };
 
@@ -55,15 +57,38 @@ module.exports.getContact = async (req, res) => {
   const ownerId = req.params.id;
 
   console.log("Owner ID:", ownerId);
-  const owner = await ownersModel.findById( ownerId );
+  const owner = await ownersModel.findById(ownerId);
 
   console.log(owner);
-  
+
   if (!owner) {
     return res.status(404).send("Owner not found");
   }
 
   console.log(owner.email);
 
-  res.render("workConsole/getContact", {owner});
+  res.render("workConsole/getContact", { owner });
 };
+
+module.exports.profile = async (req, res) => {
+  const userId = req.params.id;
+
+  console.log("Owner ID:", userId);
+  const user = await usersModel.findById(userId);
+
+  console.log(user);
+
+  if (!user) {
+    return res.status(404).send("Owner not found");
+  }
+
+  console.log(user.email);
+
+  res.render("workConsole/profile", { user });
+};
+
+// module.exports.home = async (req, res) => {
+
+//   let owner = await ownersModel.find().populate("Posts").exec();
+//   res.render("workConsole/mainScreen",{owner});
+// }

@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile</title>
+    <title>Welcome <%= user.username %></title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <nav class="bg-gray-600">
@@ -13,15 +14,12 @@
         <a href="#" class="text-white text-xl font-bold">Pratidin Yojna</a>
 
         <ul class="hidden md:flex space-x-6">
-          <li><a href="#" class="text-white hover:text-gray-300">Home</a></li>
+          <li><a href="/user/home" class="text-white hover:text-gray-300">Home</a></li>
           <li>
             <a href="#" class="text-white hover:text-gray-300">History</a>
           </li>
           <li>
             <a href="#" class="text-white hover:text-gray-300">Services</a>
-          </li>
-          <li>
-            <a href="#" class="text-white hover:text-gray-300">Profile</a>
           </li>
           <li>
             <a href="./logout" class="text-white hover:text-gray-300">Logout</a>
@@ -49,7 +47,7 @@
       <div id="mobile-menu" class="hidden md:hidden bg-gray-700">
         <ul class="space-y-4 py-4">
           <li>
-            <a href="#" class="block text-white text-center hover:text-gray-300"
+            <a href="/user/home" class="block text-white text-center hover:text-gray-300"
               >Home</a
             >
           </li>
@@ -63,11 +61,7 @@
               >Services</a
             >
           </li>
-          <li>
-            <a href="#" class="block text-white text-center hover:text-gray-300"
-              >Profile</a
-            >
-          </li>
+          
         </ul>
       </div>
     </nav>
@@ -76,6 +70,7 @@
       <h1 class="text-2xl font-semibold text-gray-700">Personal Information</h1>
     </header>
 
+    <div class="container mx-auto px-4">
     <form
       id="user-settings-form"
       class="space-y-4"
@@ -91,7 +86,7 @@
           type="text"
           id="username"
           name="username"
-          value="<%= owner.username %>"
+          value="<%= user.username %>"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
         />
       </div>
@@ -105,7 +100,7 @@
           id="email"
           name="email"
           readonly
-          value="<%= owner.email %>"
+          value="<%= user.email %>"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
         />
       </div>
@@ -118,7 +113,7 @@
           type="number"
           id="contact"
           name="contact"
-          value="<%= owner.contact %>"
+          value="<%= user.contact %>"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
         />
       </div>
@@ -177,5 +172,6 @@
         </button>
       </div>
     </form>
+  </div>
   </body>
 </html>

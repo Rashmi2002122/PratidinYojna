@@ -3,7 +3,8 @@ const router = express.Router();
 const {
   registerUser,
   loginUser,
-  getContact
+  getContact,
+  profile,
 } = require("../controllers/userAuthController");
 const isLoggedIn = require("../middlewares/isLoggedIn");
 
@@ -23,16 +24,13 @@ router.get("/home", (req, res) => {
   res.render("../views/workConsole/mainScreen.ejs");
 });
 
-router.get("/profile",(req,res)=>{
-  res.send("working");
-  // res.render("..views/workConsole/profile.ejs")
-})
+router.get("/profile/:id", profile);
 
 router.get("/logout", (req, res) => {
   res.cookie("token", "");
   res.redirect("/");
 });
 
-router.get("/getContact/:id",isLoggedIn, getContact);
+router.get("/getContact/:id", isLoggedIn, getContact);
 
 module.exports = router;
