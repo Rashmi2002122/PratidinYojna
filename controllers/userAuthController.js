@@ -3,6 +3,7 @@ const { generateToken } = require("../utils/generateToken");
 const usersModel = require("../models/usersModel");
 const postsModel = require("../models/postsModel");
 const ownersModel = require("../models/ownersModel");
+const jwt = require("jsonwebtoken");
 
 module.exports.registerUser = async (req, res) => {
   try {
@@ -45,9 +46,9 @@ module.exports.loginUser = async (req, res) => {
   bcrypt.compare(password, user.password, function (err, result) {
     let token = generateToken(user);
     res.cookie("token", token);
-    console.log("user details")
+    console.log("user details");
     console.log(user);
-    console.log("owner details")
+    console.log("owner details");
     console.log(owner);
     res.render("../views/workConsole/mainScreen", { owner, user });
   });
@@ -87,8 +88,18 @@ module.exports.profile = async (req, res) => {
   res.render("workConsole/profile", { user });
 };
 
-// module.exports.home = async (req, res) => {
+module.exports.home = async (req, res) => {
+  if (!req.cookies.token) {
+    req.flash("error", "you have to login first");
+    return res.rediect("/");
+  }
 
-//   let owner = await ownersModel.find().populate("Posts").exec();
-//   res.render("workConsole/mainScreen",{owner});
-// }
+  let decoded = jwt.verify(req.cookies.token, process.env.JWT_KEY);
+  let user = await usersModel
+    .findOne({ email: decoded.email })
+    .select("-password");
+  req.user = user;
+
+  let owner = await ownersModel.find().populate("Posts").exec();
+  res.render("workConsole/mainScreen", { owner, user });
+};

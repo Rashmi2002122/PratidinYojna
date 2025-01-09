@@ -5,6 +5,7 @@ const {
   loginUser,
   getContact,
   profile,
+  home,
 } = require("../controllers/userAuthController");
 const isLoggedIn = require("../middlewares/isLoggedIn");
 
@@ -20,9 +21,7 @@ router.post("/registerUser", registerUser);
 
 router.post("/loginUser", loginUser);
 
-router.get("/home", (req, res) => {
-  res.render("../views/workConsole/mainScreen.ejs");
-});
+router.get("/home",home);
 
 router.get("/profile/:id", profile);
 
